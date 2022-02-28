@@ -1,0 +1,213 @@
+{
+  "version": "tree-0.1",
+  "tree": {
+    "id": "App",
+    "path": "",
+    "children": {
+      "Tree": {
+        "id": "Tree",
+        "path": "Tree",
+        "constructInfo": {
+          "fqn": "constructs.Construct",
+          "version": "10.0.74"
+        }
+      },
+      "CdkStack": {
+        "id": "CdkStack",
+        "path": "CdkStack",
+        "children": {
+          "private-dynamic-content": {
+            "id": "private-dynamic-content",
+            "path": "CdkStack/private-dynamic-content",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "CdkStack/private-dynamic-content/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::CloudFront::CachePolicy",
+                  "aws:cdk:cloudformation:props": {
+                    "cachePolicyConfig": {
+                      "name": "private-dynamic-content",
+                      "minTtl": 0,
+                      "maxTtl": 86400,
+                      "defaultTtl": 0,
+                      "parametersInCacheKeyAndForwardedToOrigin": {
+                        "cookiesConfig": {
+                          "cookieBehavior": "none"
+                        },
+                        "headersConfig": {
+                          "headerBehavior": "whitelist",
+                          "headers": [
+                            "Authorization"
+                          ]
+                        },
+                        "enableAcceptEncodingGzip": true,
+                        "enableAcceptEncodingBrotli": true,
+                        "queryStringsConfig": {
+                          "queryStringBehavior": "all"
+                        }
+                      }
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_cloudfront.CfnCachePolicy",
+                  "version": "2.14.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_cloudfront.CachePolicy",
+              "version": "2.14.0"
+            }
+          },
+          "forward-all": {
+            "id": "forward-all",
+            "path": "CdkStack/forward-all",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "CdkStack/forward-all/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::CloudFront::OriginRequestPolicy",
+                  "aws:cdk:cloudformation:props": {
+                    "originRequestPolicyConfig": {
+                      "name": "forward-all",
+                      "cookiesConfig": {
+                        "cookieBehavior": "all"
+                      },
+                      "headersConfig": {
+                        "headerBehavior": "whitelist",
+                        "headers": [
+                          "CloudFront-Is-Mobile-Viewer",
+                          "CloudFront-Viewer-Country",
+                          "CloudFront-Viewer-City",
+                          "CloudFront-Viewer-Latitude",
+                          "CloudFront-Viewer-Longitude"
+                        ]
+                      },
+                      "queryStringsConfig": {
+                        "queryStringBehavior": "all"
+                      }
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_cloudfront.CfnOriginRequestPolicy",
+                  "version": "2.14.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_cloudfront.OriginRequestPolicy",
+              "version": "2.14.0"
+            }
+          },
+          "example": {
+            "id": "example",
+            "path": "CdkStack/example",
+            "children": {
+              "Origin1": {
+                "id": "Origin1",
+                "path": "CdkStack/example/Origin1",
+                "constructInfo": {
+                  "fqn": "constructs.Construct",
+                  "version": "10.0.74"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "CdkStack/example/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::CloudFront::Distribution",
+                  "aws:cdk:cloudformation:props": {
+                    "distributionConfig": {
+                      "enabled": true,
+                      "origins": [
+                        {
+                          "domainName": "eaf2-188-95-144-239.ngrok.io",
+                          "id": "CdkStackexampleOrigin1F7A3C73B",
+                          "customOriginConfig": {
+                            "originSslProtocols": [
+                              "TLSv1.2"
+                            ],
+                            "originProtocolPolicy": "https-only"
+                          }
+                        }
+                      ],
+                      "defaultCacheBehavior": {
+                        "pathPattern": "*",
+                        "targetOriginId": "CdkStackexampleOrigin1F7A3C73B",
+                        "allowedMethods": [
+                          "GET",
+                          "HEAD",
+                          "OPTIONS",
+                          "PUT",
+                          "PATCH",
+                          "POST",
+                          "DELETE"
+                        ],
+                        "cachePolicyId": {
+                          "Ref": "privatedynamiccontent743F923C"
+                        },
+                        "compress": true,
+                        "originRequestPolicyId": {
+                          "Ref": "forwardall09C74AF6"
+                        },
+                        "viewerProtocolPolicy": "allow-all"
+                      },
+                      "httpVersion": "http2",
+                      "ipv6Enabled": true
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_cloudfront.CfnDistribution",
+                  "version": "2.14.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_cloudfront.Distribution",
+              "version": "2.14.0"
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "CdkStack/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "CdkStack/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnResource",
+                  "version": "2.14.0"
+                }
+              },
+              "Condition": {
+                "id": "Condition",
+                "path": "CdkStack/CDKMetadata/Condition",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnCondition",
+                  "version": "2.14.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.0.74"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "aws-cdk-lib.Stack",
+          "version": "2.14.0"
+        }
+      }
+    },
+    "constructInfo": {
+      "fqn": "aws-cdk-lib.App",
+      "version": "2.14.0"
+    }
+  }
+}
